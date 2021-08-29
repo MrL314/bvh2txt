@@ -181,6 +181,8 @@ def parse_joints(LINES, sub_joint=False):
 
 def parse_rotations(rot_data):
 
+	if rot_data == []: rot_data.append([0, "0.0", 0])
+
 	out = ""
 
 	for r in rot_data:
@@ -190,6 +192,8 @@ def parse_rotations(rot_data):
 
 
 def parse_translations(pos_data):
+
+	if pos_data == []: pos_data.append([0, "0.0", 0])
 
 	out = ""
 
@@ -323,14 +327,13 @@ def parse_bvh(filename):
 
 	output_data.append("BCK Header")
 	output_data.append("Loop Flags: 0")
-	output_data.append("Angle Multiplier: 0")
+	output_data.append("Angle Multiplier: 2")
 	output_data.append("Animation Length: " + str(NUM_FRAMES))
 
 	
-	j_num = 0
+	ch_num = 0
 	for J in joints_list:
-		ch_num = 0
-
+		
 		for ch in J["channels"]:
 
 			last_data = None
