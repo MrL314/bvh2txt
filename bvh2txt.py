@@ -9,21 +9,29 @@ import argparse
 
 def get_rotation(ROTATION):
 	# algortihm by Louis Miles
+
+	#CHECK: [- Degree] or [+ Degree] or [0°]
+
+	# [0°]
 	if(ROTATION == 0):              
-	    RESULT = 16384
+	    RESULT = 0
 
 	# [+ Degree]
 	if(ROTATION > 0):               
-	    ROTATION = ROTATION * 45.50972222222222
-	    ROTATION = 16383.5 + ROTATION
+	    ROTATION = ROTATION * 45.51111111111111
+	    ROTATION = 0 + ROTATION
 	    RESULT = round(ROTATION)
 
 	# [- Degree]
 	if(ROTATION < 0):       
 	    ROTATION = -1 * ROTATION    # [-] becomes [+]
-	    ROTATION = ROTATION * 45.50972222222222
-	    ROTATION = 16383.5 - ROTATION
-	    RESULT = round(ROTATION)
+	    ROTATION = ROTATION * 45.51111111111111
+	    ROTATION = 65536 - ROTATION
+	    ROTATION = round(ROTATION)
+	    if(ROTATION == 65536):
+	        RESULT = 0
+	    else:
+	        RESULT = ROTATION
 
 	return RESULT
 
